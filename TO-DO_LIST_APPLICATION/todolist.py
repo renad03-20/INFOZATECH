@@ -33,4 +33,10 @@ def save(tasks):
     with open('tasks.txt', 'a') as file:
         for task in tasks:
             file.write(task + '\n')
-        
+
+def load():
+    try:
+        with open('tasks.txt', 'r') as file:
+            return file.read().splitlines()
+    except FileNotFoundError:
+        return []
