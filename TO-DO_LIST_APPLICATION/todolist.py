@@ -6,6 +6,25 @@ print('3. Mark as Done')
 print('4. exit')
 print('*----****----*')
 
+def main():
+    tasks = load()
+
+    while True:
+        option = input('Enter you\r choice: ')
+
+        if option == '1':
+            add_task(tasks)
+        elif option == '2':
+            show_task(tasks)
+        elif option == '3':
+            mark_as_done(tasks)
+        elif option == '4':
+            print("Exiting.")
+            save(tasks)
+            break
+        else:
+            print('please slecet a valid option! ')
+
 def add_task(tasks):
     task = input('Ente yor task: ')
     tasks.append(task)
@@ -40,3 +59,6 @@ def load():
             return file.read().splitlines()
     except FileNotFoundError:
         return []
+
+if __name__ == "__main__":
+    main()
