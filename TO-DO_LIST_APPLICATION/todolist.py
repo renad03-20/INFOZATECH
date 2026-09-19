@@ -31,6 +31,7 @@ def main():
 def add_task(tasks):
     task = input('Ente yor task: ')
     tasks.append(task)
+    save(tasks)
     print('task Addeed')
 
 def show_task(tasks):
@@ -39,7 +40,27 @@ def show_task(tasks):
         print(i,'*', task)
 
 def mark_as_done(tasks):
-    ...
+    if not tasks:
+        print('There are no tasks to mark!')
+        return
+
+    show_task(tasks)
+    index = input('Enter task number to mark as done: ')
+    
+    if not index.isdigit():
+        print('Please enter a valid number.')
+        return
+
+    inde_x = int(index) - 1
+    if 0 <= inde_x < len(tasks):
+        if tasks[inde_x].startswith('[DONE] '):
+            print('This task is already completed.')
+        else:
+            tasks[inde_x] = f'[DONE] {tasks[inde_x]}'
+            save(tasks)
+            print(f'Task marked as done: {tasks[inde_x]}')
+    else:
+        print('Invalid task number.')
 
 def remove_task(tasks):
     if not tasks:
