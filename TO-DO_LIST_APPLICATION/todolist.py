@@ -3,7 +3,8 @@ print('*----menu----*')
 print('1. Add Task')
 print('2. show Task')
 print('3. Mark as Done')
-print('4. exit')
+print('4. Remove Task')
+print('5. exit')
 print('*----****----*')
 
 def main():
@@ -19,6 +20,8 @@ def main():
         elif option == '3':
             mark_as_done(tasks)
         elif option == '4':
+            remove_task(tasks)
+        elif option == '5':
             print("Exiting.")
             save(tasks)
             break
@@ -36,20 +39,30 @@ def show_task(tasks):
         print(i,'*', task)
 
 def mark_as_done(tasks):
-    if not tasks:
-        print('there is no task to mark!')
-    else:
-        show_task(tasks)
-        index = int(input('Enter task index: ')) - 1
+    ...
 
-        if 0 <= index < len(tasks):
-            removed_task  = tasks.pop(index)
-            print(f'Task {removed_task} marked as done and removed')
-        else:
-            print('Invalid task index')
+def remove_task(tasks):
+    if not tasks:
+        print('There are no tasks to remove!')
+        return
+
+    show_task(tasks)
+    index = input('Enter task index to remove: ')
+
+    if not index.isdigit():
+        print('Please enter a valid number: ')
+        return
+
+    inde_x = int(index) -1 
+    if 0 <= inde_x < len(tasks):
+        removed = tasks.pop(inde_x)
+        save(tasks)
+        print(f'Task "{removed}" removed successfully.')
+    else:
+        print('Invalid task number.')
 
 def save(tasks):
-    with open('tasks.txt', 'a') as file:
+    with open('tasks.txt', 'w') as file:
         for task in tasks:
             file.write(task + '\n')
 
