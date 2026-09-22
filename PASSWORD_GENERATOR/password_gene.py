@@ -1,11 +1,33 @@
 import random
 import string
 
-password_len = int(input('enter desired password length: '))
+while True:
+    try:
+        password_len = int(input('enter desired password length: '))
+    except ValueError:
+        print('Please enter a number')
+        continue
 
-letters = input('Include letters? (y/n): ').strip().lower()
-numbers = input('Include numbers? (y/n): ').strip().lower()
-symbols = input('Include symbols? (y/n): ').strip().lower()
+    if password_len < 8:
+        print('password\'s  length has to be 8 or greater')
+        continue
+
+    break
+
+while True:
+    letters = input('Include letters? (y/n): ').strip().lower()
+    numbers = input('Include numbers? (y/n): ').strip().lower()
+    symbols = input('Include symbols? (y/n): ').strip().lower()
+
+    if letters not in ['y', 'n'] or  numbers not in ['y', 'n'] or symbols not in ['y', 'n']:
+        print('Please make sure your answer is y or n')
+        continue
+
+    if letters == 'n' and numbers == 'n' and symbols == 'n':
+        print('Please select at least one type of character!')
+        continue
+
+    break
 
 character_pool = ''
 
