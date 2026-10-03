@@ -52,18 +52,33 @@ def generate_password(password_len, letters, numbers, symbols):
 
 
 def main():
-    password_len = get_password_length()
+    saved_passwords = []
 
-    letters, numbers, symbols = get_character_choices()
+    while True:
+        password_len = get_password_length()
 
-    generated_password = generate_password(
-        password_len,
-        letters,
-        numbers,
-        symbols
-    )
+        letters, numbers, symbols = get_character_choices()
 
-    print(generated_password)
+        generated_password = generate_password(
+            password_len,
+            letters,
+            numbers,
+            symbols
+        )
+
+        print(f'Generated password: {generated_password}')
+
+        saved_passwords.append(generated_password)
+
+        again = input('Generate another password? (y/n): ').strip().lower()
+
+        if again != 'y':
+            break
+
+    print('\nSaved passwords:')
+
+    for password in saved_passwords:
+        print(password)
 
 
 main()
